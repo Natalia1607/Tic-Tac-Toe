@@ -5,10 +5,12 @@ const contentWrapper = document.getElementById('content');
 const modalResult = document.getElementById('modal-result-wrapper');
 const overlay = document.getElementById('overlay');
 const btnClose = document.getElementById('btn-close');
+const cros = '<span id="cros">X</span>';
+const toe = '<span id="toe">O</span>';
 
 area.addEventListener('click', event => {
     if(event.target.className = 'box') {
-        move % 2 === 0 ? event.target.innerHTML = 'X' : event.target.innerHTML = 'O';
+        move % 2 === 0 ? event.target.innerHTML = `${cros}` : event.target.innerHTML = `${toe}`;
         move++;
         check();
     }
@@ -27,17 +29,19 @@ const check = () => {
         [2,4,6],
     ];
     for(i = 0; i < arr.length; i++) {
-        if(
-            boxes[arr[i][0]].innerHTML == 'X' && boxes[arr[i][1]].innerHTML == 'X' && boxes[arr[i][2]].innerHTML == 'X'
+        if (
+            boxes[arr[i][0]].innerHTML == `${cros}` && boxes[arr[i][1]].innerHTML == `${cros}` && boxes[arr[i][2]].innerHTML == `${cros}`
         ) {
             result = 'Crosses';
             prepareResult(result);
+            modalResult.style.backgroundColor = '#ebdd1d8e';
         } else if (
-            boxes[arr[i][0]].innerHTML == 'O' && boxes[arr[i][1]].innerHTML == 'O' && boxes[arr[i][2]].innerHTML == 'O'
+            boxes[arr[i][0]].innerHTML == `${toe}` && boxes[arr[i][1]].innerHTML == `${toe}` && boxes[arr[i][2]].innerHTML == `${toe}`
         ) {
             result = 'Toe';
             prepareResult(result);
-        }
+            modalResult.style.backgroundColor = '#69eb1d8e';
+        } 
     }
 };
 
